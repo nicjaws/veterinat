@@ -1,7 +1,27 @@
 import React, {Component} from 'react';
 
 class NuevaCita extends Component {
-    state = {  }
+    state = { 
+        appointment : {
+            pet: '',
+            owner: '',
+            date: '',
+            hour: '',
+            symptoms: ''
+        }
+     }
+
+     handleChange = (e) => {
+         console.log(e.target.name + ': ' + e.target.value);
+
+         //colocar lo que el usuario escribe en el state
+         this.setState({
+             appointment: {
+                 ...this.state.appointment,
+                 [e.target.name] : e.target.value
+             }
+         })
+     }
     render() { 
         return (
         <div className="card mt-5 py-5">
@@ -18,7 +38,9 @@ class NuevaCita extends Component {
                                 type="text"
                                 className="form-control"
                                 placeholder="Pet´s name"
-                                name="owner"
+                                name="pet"
+                                onChange={this.handleChange}
+                                value={this.state.appointment.pet}
                             />
                         </div>
                     </div> {/* form-group */}
@@ -30,7 +52,9 @@ class NuevaCita extends Component {
                                 type="text"
                                 className="form-control"
                                 placeholder="Owner´s name"
-                                name="pet"
+                                name="owner"
+                                onChange={this.handleChange}
+                                value={this.state.appointment.owner}
                             />
                         </div>
                     </div> {/* form-group */}
@@ -42,6 +66,8 @@ class NuevaCita extends Component {
                                 type="date"
                                 className="form-control"
                                 name="date"
+                                onChange={this.handleChange}
+                                value={this.state.appointment.date}
                             />
                         </div>
                         <label className="col-sm-4 col-lg-2 col-form-label">Hour</label>
@@ -50,6 +76,8 @@ class NuevaCita extends Component {
                                 type="time"
                                 className="form-control"
                                 name="hour"
+                                onChange={this.handleChange}
+                                value={this.state.appointment.hour}
                             />
                         </div>
                     </div> {/* form-group */}
@@ -61,10 +89,14 @@ class NuevaCita extends Component {
                                 className="form-control"
                                 name="symptoms"
                                 placeholder="Describe the symptoms"
+                                onChange={this.handleChange}
+                                value={this.state.appointment.symptoms}
                             >
                             </textarea>
                         </div>
                     </div> {/* form-group */}
+
+                    <input type="submit" className="py-3 mt-2 btn btn-success btn-block" value="add new appointment" />
                 </form>
             </div>
         </div>  
