@@ -8,19 +8,37 @@ class NuevaCita extends Component {
             date: '',
             hour: '',
             symptoms: ''
-        }
+        },
+        error: false
      }
-
+        // Cuando el usuario escribe en los inputs
      handleChange = (e) => {
-         console.log(e.target.name + ': ' + e.target.value);
-
          //colocar lo que el usuario escribe en el state
          this.setState({
              appointment: {
-                 ...this.state.appointment,
+                 ...this.setState.appointment,
                  [e.target.name] : e.target.value
              }
          })
+     }
+
+     // cuando el usuario envia el formulario
+     handleSubmit = e => {
+         e.preventDefault(); 
+
+         // extraer los valores del state
+        const { pet, owner, date, hour, symptoms } = this.state.appointment; 
+         // validar que todos los campos esten llenos
+         if (pet === '' || owner === '' || date === '' || hour === '' || symptoms === '' ) {
+            this.setState({
+                error: true
+            });
+            //detener la ejecucion
+            return;
+         }
+         console.log('despues del if');
+
+         // agregar la cita al state de la app
      }
     render() { 
         return (
@@ -30,7 +48,7 @@ class NuevaCita extends Component {
                     Fill up the formular to create a new appointment
                 </h2>
 
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
                         <label className="col-sm-4 col-lg-2 col-form-label">Pet´s name</label>
                         <div className="col-sm-8 col-lg-10">
