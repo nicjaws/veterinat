@@ -16,7 +16,7 @@ class NuevaCita extends Component {
          //colocar lo que el usuario escribe en el state
          this.setState({
              appointment: {
-                 ...this.setState.appointment,
+                 ...this.state.appointment,
                  [e.target.name] : e.target.value
              }
          })
@@ -39,7 +39,8 @@ class NuevaCita extends Component {
          console.log('despues del if');
 
          // agregar la cita al state de la app
-     }
+         this.props.createNewAppointment(this.state.appointment)
+        }
     render() { 
         return (
         <div className="card mt-5 py-5">

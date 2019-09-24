@@ -7,6 +7,10 @@ class App extends Component {
   state = { 
 
    }
+
+   createNewAppointment = datas => {
+     console.log(datas)
+   }
   render() { 
     return ( 
       <div className="container">
@@ -14,7 +18,9 @@ class App extends Component {
         titulo='Administrator Veterinary Patients' />
         <div className="row">
           <div className="col-md-10 mx-auto">
-            <NuevaCita />
+            <NuevaCita 
+              createNewAppointment={this.createNewAppointment}
+            />
           </div>
         </div>
       </div>
