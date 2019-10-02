@@ -2,14 +2,21 @@ import React, { Component } from 'react';
 import './bootstrap.min.css';
 import Header from './components/Header';
 import NuevaCita from './components/NuevaCita';
+import AppointmentsList from './components/ListaCitas'; 
+
 
 class App extends Component {
   state = { 
-
+    appointments: []
    }
 
    createNewAppointment = datas => {
-     console.log(datas)
+     // copiar el state actual
+      const appointments = [...this.state.appointments, datas]
+     // agregar el nuevo state
+     this.setState({
+       appointments 
+      })
    }
   render() { 
     return ( 
@@ -21,6 +28,9 @@ class App extends Component {
             <NuevaCita 
               createNewAppointment={this.createNewAppointment}
             />
+          </div>
+          <div className="mt-5 col-md-10 mx-auto">
+            <AppointmentsList appointments={this.state.appointments} /> 
           </div>
         </div>
       </div>
