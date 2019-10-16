@@ -18,6 +18,19 @@ class App extends Component {
        appointments 
       })
    }
+  //eliminar citas
+   eraseAppointment = id => {
+     // tomar una copia del state
+      const appointmentsActuals = [...this.state.appointments];
+
+     // utilizar filter para sacar el @id del arreglo
+     const appointments = appointmentsActuals.filter(appointment => appointment.id !== id )
+
+     //actualizar el state
+     this.setState({
+       appointments
+     })
+   }
   render() { 
     return ( 
       <div className="container">
@@ -30,7 +43,9 @@ class App extends Component {
             />
           </div>
           <div className="mt-5 col-md-10 mx-auto">
-            <AppointmentsList appointments={this.state.appointments} /> 
+            <AppointmentsList appointments={this.state.appointments} 
+              eraseAppointment={this.eraseAppointment}
+            /> 
           </div>
         </div>
       </div>

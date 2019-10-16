@@ -1,7 +1,7 @@
 import React from 'react';
 import Appointment from './Appointment'
 
-const AppointmentsList = ({appointments}) => (
+const AppointmentsList = ({appointments, eraseAppointment}) => (
         <div className="card mt-2 py-5">
             <div className="card-body">
                 <h2 className="card-title text-center"> Admin list appointments here</h2>
@@ -9,7 +9,8 @@ const AppointmentsList = ({appointments}) => (
                     {appointments.map(appointment => (
                         <Appointment
                         key={appointment.id}
-                        appointment={appointment} />
+                        appointment={appointment}
+                        eraseAppointment={eraseAppointment} />
                     ))}
                 </div>
             </div>
